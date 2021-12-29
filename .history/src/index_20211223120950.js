@@ -3,16 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { fetchReducer, rootReducer } from './reducer';
+import { rootReducer } from './reducer';
 import {Provider} from 'react-redux'
 import {applyMiddleware, createStore, compose} from 'redux'
 import thunk from 'redux-thunk';
 
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
-    applyMiddleware(thunk)
-  ));
+const Reducer = (state = {items: []}, action) => {
+  switch(action.type) {
+    case 'add': return {items: [...state.items, action.payload]}
+    default: return state
+  }
+}
+const store = createStore(Reducer, 
+  applyMiddleware(thunk)
+);
 
 ReactDOM.render(
   <React.StrictMode>

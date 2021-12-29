@@ -19,14 +19,10 @@ const App = () => {
         (items.items[0].map( i=> <ul>
                                     <li key={i.id}>
                                       {i.title}
-                                      <button>
-                                        <AddIcon 
-                                          onClick={() => {
-                                            dispatch(
-                                              addCartAction({id: i.id, title: i.title, price: i.price, img: i.image})
-                                            )
-                                          } } />
-                                        </button>
+                                      <AddIcon 
+                                        onClick={() => {
+                                          dispatch(addCartAction({id: i.id, title: i.title, price: i.price, img: i.image}))
+                                        } } />
                                     </li>
                                     
                                   </ul>))}
